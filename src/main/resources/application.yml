@@ -1,0 +1,34 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 120000MB     #-1 ???? ??, 100MB
+      max-request-size: 120000MB  #-1 ???? ??, 100MB
+  profiles: common # ???? ??
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.86.131:3306/sedn?characterEncoding=UTF-8&allowMultiQueries=true&useUnicode=true&useSSL=false&serverTimezone=Asia/Seoul   # ???? - mariaDB ip address
+    username: root           # ???? - ?? ??
+    password: dlsn2#4%   # ???? - ????
+    messages:
+      basename: i18n/exception
+      encoding: UTF-8
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    generate-ddl: true
+    open-in-view: false
+    show-sql: false
+    hibernate:
+      ddl-auto: update # ddl-auto - @Entity ??? ??? ?? DB? ?? ??? ??(create/update/none..)
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true # GET, POST ? ? ??? PUT, DELETE ?? ???? ???? ?? ??
+
+  logging:
+    pattern:
+      file: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n"
+      rolling-file-name: "/logs/abc.%d{yyyy-MM-dd}.%i"
+    level:
+      root: info
+      com.proj.api: debug
+    file : ${user.home}/logs/product.log
